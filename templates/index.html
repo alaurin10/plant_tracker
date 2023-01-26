@@ -10,6 +10,9 @@
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
         <br>
+        <label for="days_between_watering">Days Between Watering:</label>
+        <input type="integer" id="days_between_watering" name="days_between_watering" required>
+        <br>
         <label for="last_watered">Last Watered:</label>
         <input type="date" id="last_watered" name="last_watered" required>
         <br><br>
@@ -20,13 +23,17 @@
     <table>
         <tr>
             <th>Name</th>
+            <th>Days Between Watering</th>
             <th>Last Watered</th>
+            <th>Next Watering</th>
             <th>Water Now</th>
         </tr>
         {% for plant in plants %}
         <tr>
             <td>{{ plant.name }}</td>
+            <td>{{ plant.days_between_watering }}</td>
             <td>{{ plant.last_watered }}</td>
+            <td>{{ plant.next_watering }}</td>
             <td>
                 <a href="{{ url_for('water_plant', id=plant.id) }}">Water Now</a>
             </td>

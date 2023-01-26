@@ -4,64 +4,41 @@
     <title>Plant Watering Schedule</title>
 </head>
 <body>
-    <h1>Plant Watering Schedule</h1>
-    <h2>Add New Plant</h2>
-    <form action="{{ url_for('add_plant') }}" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-        <label for="days_between_watering">Days Between Watering:</label>
-        <input type="integer" id="days_between_watering" name="days_between_watering" required>
-        <br>
-        <label for="last_watered">Last Watered:</label>
-        <input type="date" id="last_watered" name="last_watered" required>
-        <br><br>
-        <input type="submit" value="Add Plant">
-    </form>
-    <br>
-    <h2>Upcoming Watering</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Days Between Watering</th>
-            <th>Last Watered</th>
-            <th>Next Watering</th>
-            <th>Water Now</th>
-        </tr>
-        {% for plant in plants %}
-        <tr>
-            <td>{{ plant.name }}</td>
-            <td>{{ plant.days_between_watering }}</td>
-            <td>{{ plant.last_watered }}</td>
-            <td>{{ plant.next_watering }}</td>
-            <td>
-                <a href="{{ url_for('water_plant', id=plant.id) }}">Water Now</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br><br>
-    <h2>Delete Plants</h2>
-    <table>
-        <thead>
+    {% if plants %}
+        <h2>Upcoming Watering</h2>
+        <table>
             <tr>
                 <th>Name</th>
-                <th>Delete</th>
+                <th>Days Between Watering</th>
+                <th>Last Watered</th>
+                <th>Next Watering</th>
+                <th>Water Now</th>
             </tr>
-        </thead>
-        <tbody>
             {% for plant in plants %}
             <tr>
                 <td>{{ plant.name }}</td>
+                <td>{{ plant.days_between_watering }}</td>
+                <td>{{ plant.last_watered }}</td>
+                <td>{{ plant.next_watering }}</td>
                 <td>
-                    <form action="{{ url_for('delete_plant', id=plant.id) }}" method="POST">
-                        <input type="submit" value="Delete">
-                    </form>
+                    <a href="{{ url_for('water_plant', id=plant.id) }}">Water Now</a>
                 </td>
             </tr>
             {% endfor %}
-        </tbody>
-    </table>
+        </table>
+        <br><br>
+        <h2>Actions</h2>
+        <form action="{{ url_for('delete_plant_page') }}" method="get">
+            <input type="submit" value="Delete Plant">
+        </form>
+        <form action="{{ url_for('add_plant_page') }}" method="get">
+            <input type="submit" value="Add Plant">
+        </form>
+    {% else %}
+        <a href="{{ url_for('add_first_plant_page') }}">Add your first plant</a>
+    {% endif %}
+    
+
 
 </body>
 </html>

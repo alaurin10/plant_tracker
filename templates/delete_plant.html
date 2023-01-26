@@ -1,5 +1,11 @@
-<h1>Delete Plant</h1>
-<form method="POST" action="{{ url_for('delete_plant') }}">
+<!doctype html>
+<html>
+<head>
+    <title>Plant Watering Schedule</title>
+</head>
+<body>
+    <h1>Delete Plants</h1>
+    <br>
     <table>
         <thead>
             <tr>
@@ -20,4 +26,11 @@
             {% endfor %}
         </tbody>
     </table>
-</form>
+    <br>
+    <form action="{{url_for('index')}}">
+        <input type="submit" value="Return">
+    </form>    
+</body>
+</html>
+
+

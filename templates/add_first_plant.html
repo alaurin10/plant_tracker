@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Plant Watering Schedule</title>
+</head>
+<body>
+    <h1>Add Plants</h1>
+    <br>
+    <form action="{{ url_for('add_first_plant') }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="days_between_watering">Days Between Watering:</label>
+        <input type="integer" id="days_between_watering" name="days_between_watering" required>
+        <br>
+        <label for="last_watered">Last Watered:</label>
+        <input type="date" id="last_watered" name="last_watered" required>
+        <br><br>
+        <input type="submit" value="Add Plant">  
+    </form>
+    <br><br>
+    <form action="{{url_for('index')}}">
+        <input type="submit" value="Return">
+    </form> 
+</body>
+</html>

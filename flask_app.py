@@ -38,29 +38,41 @@ def index():
         plant.next_watering = plant.last_watered + timedelta(days=plant.days_between_watering)
     return render_template('index.html', plants=plants)
 
-
-
-@app.route('/add', methods=['POST'])
-def add_plant():
+@app.route('/add_first_plant', methods=['POST'])
+def add_first_plant():
     name = request.form['name']
     last_watered = datetime.strptime(request.form['last_watered'], '%Y-%m-%d')
     days_between_watering = request.form['days_between_watering']
     new_plant = Plant(name=name, last_watered=last_watered, days_between_watering=days_between_watering)
     db.session.add(new_plant)
     db.session.commit() 
-    return redirect('/')
+    return redirect(url_for('add_plant_page'))
 
-@app.route('/delete_plant/<int:id>', methods=['POST'])
-def delete_plant(id):
-    plants = Plant.query.get(id)
-    if plants:
-        db.session.delete(plants)
-        db.session.commit()
+@app.route('/add_plant', methods=['GET', 'POST'])
+def add_plant():
+    if request.method == 'POST':
+        name = request.form['name']
+        last_watered = datetime.strptime(request.form['last_watered'], '%Y-%m-%d')
+        days_between_watering = request.form['days_between_watering']
+        new_plant = Plant(name=name, last_watered=last_watered, days_between_watering=days_between_watering)
+        db.session.add(new_plant)
+        db.session.commit() 
+        return redirect(url_for('add_plant_page'))
     else:
-        flash("Plant does not exist")
-    # return render_template('delete_plant.html', plants=plants)
-    return redirect(url_for('index'))
+        plants = Plant.query.all()
+        return render_template('add_plant.html', plants=plants)
 
+
+@app.route('/delete_plant/<int:id>', methods=['GET', 'POST'])
+def delete_plant(id):
+    if request.method == 'POST':
+        plant = Plant.query.get(id)
+        db.session.delete(plant)
+        db.session.commit()
+        return redirect(url_for('delete_plant_page'))
+    else:
+        plant = Plant.query.get(id)
+        return render_template('delete_plant.html', plant=plant)
 
 @app.route('/water/<int:id>')
 def water_plant(id):
@@ -68,6 +80,23 @@ def water_plant(id):
     plant.last_watered = datetime.now().date()
     db.session.commit()
     return redirect('/')
+    
+
+@app.route('/delete_plant', methods=['GET'])
+def delete_plant_page():
+    plants = Plant.query.all()
+    return render_template('delete_plant.html', plants=plants)
+
+@app.route('/add_plant', methods=['GET'])
+def add_plant_page():
+    plants = Plant.query.all()
+    return render_template('add_plant.html', plants=plants)
+
+
+@app.route('/add_first_plant', methods=['GET'])
+def add_first_plant_page():
+    return render_template('add_first_plant.html', plants=None)
+
 
 if __name__ == '__main__':
     with app.app_context():

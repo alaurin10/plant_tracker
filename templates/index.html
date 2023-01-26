@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <title>Plant Watering Schedule</title>
+</head>
+<body>
+    <h1>Plant Watering Schedule</h1>
+    <h2>Add New Plant</h2>
+    <form action="{{ url_for('add_plant') }}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="last_watered">Last Watered:</label>
+        <input type="date" id="last_watered" name="last_watered" required>
+        <br><br>
+        <input type="submit" value="Add Plant">
+    </form>
+    <br>
+    <h2>Upcoming Watering</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Last Watered</th>
+            <th>Water Now</th>
+        </tr>
+        {% for plant in plants %}
+        <tr>
+            <td>{{ plant.name }}</td>
+            <td>{{ plant.last_watered }}</td>
+            <td>
+                <a href="{{ url_for('water_plant', id=plant.id) }}">Water Now</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+    <h2>Delete Plants</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for plant in plants %}
+            <tr>
+                <td>{{ plant.name }}</td>
+                <td>
+                    <form action="{{ url_for('delete_plant', id=plant.id) }}" method="POST">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

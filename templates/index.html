@@ -1,12 +1,13 @@
 <!doctype html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <title>Plant Watering Schedule</title>
 </head>
 <body>
     {% if plants %}
         <h2>Upcoming Watering</h2>
-        <table>
+        <table class="upcoming-watering">
             <tr>
                 <th>Name</th>
                 <th>Days Between Watering</th>

@@ -1,0 +1,16 @@
+table.upcoming-watering {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 100%;
+}
+
+table.upcoming-watering td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+table.upcoming-watering th {
+    background-color: #dddddd;
+}

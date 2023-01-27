@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Plant Watering Schedule</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Add Plants</h1>
@@ -23,7 +24,7 @@
         <input type="submit" value="Return">
     </form>  
     <br><br>
-    <table>
+    <table class="add-plant">
         <thead>
             <tr>
                 <th>Name</th>

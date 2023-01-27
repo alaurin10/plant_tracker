@@ -2,7 +2,7 @@ table.upcoming-watering {
     font-family: Arial, sans-serif;
     border-collapse: collapse;
     border: 1px solid black;
-    width: 100%;
+    width: 75%;
 }
 
 table.upcoming-watering td, th {
@@ -12,5 +12,23 @@ table.upcoming-watering td, th {
 }
 
 table.upcoming-watering th {
+    background-color: #dddddd;
+}
+
+
+table.add-plant {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 25%;
+}
+
+table.add-plant td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+table.add-plant th {
     background-color: #dddddd;
 }

@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from config import DevelopmentConfig
 
 
+
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 app.secret_key = 'stuff'
@@ -96,6 +97,7 @@ def add_plant_page():
 @app.route('/add_first_plant', methods=['GET'])
 def add_first_plant_page():
     return render_template('add_first_plant.html', plants=None)
+
 
 
 if __name__ == '__main__':

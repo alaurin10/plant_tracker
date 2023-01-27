@@ -6,11 +6,11 @@
 </head>
 <body>
     {% if plants %}
-        <h2>Upcoming Watering</h2>
+        <h2 class="main-header">Upcoming Watering</h2>
         <table class="upcoming-watering">
             <tr>
                 <th>Name</th>
-                <th>Days Between Watering</th>
+                <th>Interval</th>
                 <th>Last Watered</th>
                 <th>Next Watering</th>
                 <th>Water Now</th>
@@ -19,8 +19,8 @@
             <tr>
                 <td>{{ plant.name }}</td>
                 <td>{{ plant.days_between_watering }}</td>
-                <td>{{ plant.last_watered }}</td>
-                <td>{{ plant.next_watering }}</td>
+                <td>{{ plant.last_watered.strftime('%b %d') }}</td>
+                <td>{{ plant.next_watering.strftime('%b %d') }}</td>
                 <td>
                     <a href="{{ url_for('water_plant', id=plant.id) }}">Water Now</a>
                 </td>

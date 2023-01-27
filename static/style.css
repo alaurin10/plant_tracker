@@ -3,16 +3,18 @@ table.upcoming-watering {
     border-collapse: collapse;
     border: 1px solid black;
     width: 75%;
+    display: grid;
 }
 
 table.upcoming-watering td, th {
     border: 1px solid black;
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
 table.upcoming-watering th {
     background-color: #dddddd;
+    text-align: center;
 }
 
 
@@ -21,6 +23,7 @@ table.add-plant {
     border-collapse: collapse;
     border: 1px solid black;
     width: 25%;
+    display: grid;
 }
 
 table.add-plant td, th {
@@ -32,3 +35,11 @@ table.add-plant td, th {
 table.add-plant th {
     background-color: #dddddd;
 }
+
+h2.main-header {
+    padding: 10px;
+    text-align: left;
+    background: cyan;
+    color: black;
+    font-size: 20px;
+    }

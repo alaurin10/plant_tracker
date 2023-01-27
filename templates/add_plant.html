@@ -37,7 +37,7 @@
             <tr>
                 <td>{{ plant.name }}</td>
                 <td>{{ plant.days_between_watering }}</td>
-                <td>{{ plant.last_watered }}</td>
+                <td>{{ plant.last_watered.strftime('%b %d') }}</td>
             </tr>
             {% endfor %}
         </tbody>

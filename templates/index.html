@@ -1,16 +1,16 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index_style.css') }}">
     <title>Plant Watering Schedule</title>
 </head>
 <body>
     {% if plants %}
-        <h2 class="main-header">Upcoming Watering</h2>
-        <table class="upcoming-watering">
+        <h1 class="header">Upcoming Watering</h2>
+        <table class="plant-list">
             <tr>
                 <th>Name</th>
-                <th>Interval</th>
+                <th>Days Between Watering</th>
                 <th>Last Watered</th>
                 <th>Next Watering</th>
                 <th>Water Now</th>
@@ -22,21 +22,26 @@
                 <td>{{ plant.last_watered.strftime('%b %d') }}</td>
                 <td>{{ plant.next_watering.strftime('%b %d') }}</td>
                 <td>
-                    <a href="{{ url_for('water_plant', id=plant.id) }}">Water Now</a>
+                    <a class="water-now-btn" href="{{ url_for('water_plant', id=plant.id) }}">Water Now</a>
                 </td>
             </tr>
             {% endfor %}
         </table>
         <br><br>
-        <h2>Actions</h2>
-        <form action="{{ url_for('delete_plant_page') }}" method="get">
-            <input type="submit" value="Delete Plant">
-        </form>
         <form action="{{ url_for('add_plant_page') }}" method="get">
-            <input type="submit" value="Add Plant">
+            <input class="add-plant-btn" type="submit" value="Add Plant">
+        </form>
+        <br>
+        <form action="{{ url_for('delete_plant_page') }}" method="get">
+            <input class="return-btn" type="submit" value="Delete Plant">
         </form>
     {% else %}
-        <a href="{{ url_for('add_first_plant_page') }}">Add your first plant</a>
+        <h3 class="no-plant-header">It seems like you don't have any plants yet :(<br>
+            Click below to add your first plant!
+        </h3>
+        <div class="btn-center">
+            <a href="{{ url_for('add_first_plant_page') }}" class="add-first-plant-btn">Add your first plant</a>
+        </div>
     {% endif %}
     
 

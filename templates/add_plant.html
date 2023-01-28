@@ -2,29 +2,30 @@
 <html>
 <head>
     <title>Plant Watering Schedule</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='add_plant_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index_style.css') }}">
 </head>
 <body>
-    <h1>Add Plants</h1>
+    <h1 class="header">Add Plants</h1>
     <br>
-    <form action="{{ url_for('add_plant') }}" method="post">
-        <label for="name">Name:</label>
+    <form action="{{ url_for('add_plant') }}" class="input" method="post">
+        <label for="name">Name <br></label>
         <input type="text" id="name" name="name" required>
         <br>
-        <label for="days_between_watering">Days Between Watering:</label>
-        <input type="integer" id="days_between_watering" name="days_between_watering" required>
+        <label for="days_between_watering">Days Between Watering <br></label>
+        <input type="number" id="days_between_watering" name="days_between_watering" required>
         <br>
-        <label for="last_watered">Last Watered:</label>
+        <label for="last_watered">Last Watered <br></label>
         <input type="date" id="last_watered" name="last_watered" required>
         <br><br>
-        <input type="submit" value="Add Plant">
+        <input class="add-plant-btn" type="submit" value="Add Plant">
     </form>
-    <br><br>
+    <br>
     <form action="{{url_for('index')}}">
-        <input type="submit" value="Return">
+        <input class="return-btn" type="submit" value="Return">
     </form>  
     <br><br>
-    <table class="add-plant">
+    <table class="plant-list">
         <thead>
             <tr>
                 <th>Name</th>

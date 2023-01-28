@@ -1,0 +1,128 @@
+h1.header {
+    padding: 60px;
+    text-align: center;
+    background-color: #8e97ad;
+    color: white;
+    font-size: 30px;
+}
+
+h3.no-plant-header {
+    padding: 60px;
+    text-align: center;
+    background-color: #8e97ad;
+    color: white;
+    font-size: 30px;
+}
+
+table.plant-list {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 50%;
+    
+}
+
+table.plant-list td, th {
+    border: 1px solid black;
+    text-align: left;
+    vertical-align: middle;
+    padding: 15px;
+}
+
+table.plant-list th {
+    background-color: #bdc8dd;
+}
+
+table.plant-list tr:nth-child(even) {
+    background-color: #ebeaea;
+}
+
+table.plant-list tr:hover {
+    background-color: #a6e7bb;
+}
+
+
+.add-first-plant-btn {
+    background-color: #dddddd;
+    color: black;
+    font-size: 30px;
+    padding: 25px 40px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+.add-first-plant-btn:hover {
+    background-color: #c1cdec;
+    box-shadow: 0 10px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.btn-center {
+    text-align: center;
+}
+
+.add-plant-btn {
+    background-color: #dddddd;
+    color: black;
+    font-size: 18px;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+.add-plant-btn:hover {
+    background-color: #41e076;
+    box-shadow: 0 10px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.return-btn {
+    background-color: #dddddd;
+    color: black;
+    font-size: 18px;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+.return-btn:hover {
+    background-color: #d64339;
+    box-shadow: 0 10px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.water-now-btn {
+    background-color: #dddddd;
+    color: black;
+    font-size: 15px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+.water-now-btn:hover {
+    background-color: #3956d6;
+    box-shadow: 0 10px 12px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+

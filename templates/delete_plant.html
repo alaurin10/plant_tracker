@@ -2,12 +2,13 @@
 <html>
 <head>
     <title>Plant Watering Schedule</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='delete_plant_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index_style.css') }}">
 </head>
 <body>
-    <h1>Delete Plants</h1>
+    <h1 class="header">Delete Plants</h1>
     <br>
-    <table class="add-plant">
+    <table class="plant-list">
         <thead>
             <tr>
                 <th>Name</th>
@@ -20,7 +21,7 @@
                 <td>{{ plant.name }}</td>
                 <td>
                     <form action="{{ url_for('delete_plant', id=plant.id) }}" method="POST">
-                        <input type="submit" value="Delete">
+                        <input class="delete-btn" type="submit" value="Delete">
                     </form>
                 </td>
             </tr>
@@ -29,7 +30,7 @@
     </table>
     <br>
     <form action="{{url_for('index')}}">
-        <input type="submit" value="Return">
+        <input class="return-btn" type="submit" value="Return">
     </form>    
 </body>
 </html>

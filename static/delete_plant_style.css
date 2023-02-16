@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    transition-duration: 0.4s;
+    /* transition-duration: 0.4s; */
 }
 
 .delete-btn:hover {

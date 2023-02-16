@@ -28,15 +28,20 @@
             {% endfor %}
         </table>
         <br><br>
-        <form action="{{ url_for('add_plant_page') }}" method="get">
-            <input class="add-plant-btn" type="submit" value="Add Plant">
-        </form>
-        <br>
-        <form action="{{ url_for('delete_plant_page') }}" method="get">
-            <input class="return-btn" type="submit" value="Delete Plant">
-        </form>
+        <div class="button-container">
+            <form action="{{ url_for('add_plant_page') }}" method="get">
+                <input class="add-plant-btn" type="submit" value="Add Plant">
+            </form>
+        </div>
+        
+        <div class="button-container">
+            <form action="{{ url_for('delete_plant_page') }}" method="get">
+                <input class="return-btn" type="submit" value="Delete Plant">                
+            </form>
+        </div>
     {% else %}
-        <h3 class="no-plant-header">It seems like you don't have any plants yet :(<br>
+        <h3 class="no-plant-header">
+            It seems like you don't have any plants yet :(<br>
             Click below to add your first plant!
         </h3>
         <div class="btn-center">

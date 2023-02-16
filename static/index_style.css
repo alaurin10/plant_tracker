@@ -66,6 +66,14 @@ table.plant-list tr:hover {
     text-align: center;
 }
 
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    margin: 0 10px 10px 0;
+    justify-content: space-between;
+}
+
 .add-plant-btn {
     background-color: #dddddd;
     color: black;
@@ -79,6 +87,7 @@ table.plant-list tr:hover {
     justify-content: center;
     border-radius: 8px;
     transition-duration: 0.4s;
+    /* float: left; */
 }
 
 .add-plant-btn:hover {
@@ -99,6 +108,7 @@ table.plant-list tr:hover {
     justify-content: center;
     border-radius: 8px;
     transition-duration: 0.4s;
+    /* float: right; */
 }
 
 .return-btn:hover {
@@ -118,7 +128,7 @@ table.plant-list tr:hover {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    transition-duration: 0.4s;
+    /* transition-duration: 0.4s; */
 }
 
 .water-now-btn:hover {

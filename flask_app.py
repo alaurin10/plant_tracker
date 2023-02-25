@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from datetime import datetime, timedelta
@@ -18,6 +18,7 @@ login_manager.login_view = 'login'
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
     plants = db.relationship('Plant', backref='user', lazy=True)
   
 
@@ -35,7 +36,7 @@ class Plant(db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))      
-
+ 
 @app.route('/', methods=['GET', 'POST']) 
 @login_required
 def index():
@@ -137,18 +138,40 @@ def add_first_plant_page():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
         username = request.form['username']
         user = User.query.filter_by(username=username).first()
         if not user:
             # Create a new user if the username doesn't exist
-            user = User(username=username)
-            db.session.add(user)
-            db.session.commit()
+            error = 'Invalid username. Try again or add a new profile'
+            return render_template('login.html', error=error)
         login_user(user)
         return redirect('/')
     else:
         return render_template('login.html')
+    
+@app.route('/new_login', methods=['GET', 'POST'])
+def new_login():      
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        remember_me = request.form.get('remember_me')
+
+        user = User.query.filter((User.username == username) | (User.email == email)).first()
+        if not user:
+            user = User(username=username, email=email)
+            db.session.add(user)
+            db.session.commit()
+            login_user(user, remember=remember_me)
+            return redirect('/')
+
+    return render_template('new_login.html')
+
+
 
 @app.route('/logout')
 @login_required

@@ -43,6 +43,21 @@ input[type=date]:focus {
     border: 3px solid black;
 }
 
+input[type=email] {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 8px;
+    /* transition: 0.4s ease-in-out; */
+}
+
+input[type=email]:focus {
+    background-color: #e7e9ee;
+    border: 3px solid black;
+}
+
 form {
     margin: 0;
 }

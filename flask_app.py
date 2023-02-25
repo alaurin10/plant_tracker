@@ -20,8 +20,8 @@ login_manager.login_view = 'login'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'alaurin10@gmail.com'
-app.config['MAIL_PASSWORD'] = 'cvuqiscxthbdrccs'
+app.config['MAIL_USERNAME'] = 'plant.tracker.notification@gmail.com'
+app.config['MAIL_PASSWORD'] = 'uhzfjowrlrxozifa'
 
 mail = Mail(app)
 
@@ -205,7 +205,7 @@ def my_task():
 
             if need_water:
                 plants_need_water = ', '.join(need_water)
-                message = Message('Notification', sender='alaurin10@gmail.com', recipients=[f'{user.email}'])
+                message = Message('Notification', sender='plant.tracker.notification@gmail.com', recipients=[f'{user.email}'])
                 message.body = f'The following plants need water!\n\n{plants_need_water}'
                 mail.send(message)
             

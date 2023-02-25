@@ -1,0 +1,19 @@
+
+  
+<!doctype html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='header_style.css') }}">
+    <title>Plant Watering Schedule</title>
+</head>
+<header>
+<div class="header-left">
+    <p>Welcome, {{ current_user.username }}!</p>
+</div>
+<div class="header-right">
+    <button><a href="/">Home</a></button>
+    <button><a href="/add_plant">Add Plant</a></button>
+    <button><a href="/delete_plant">Delete Plant</a></button>
+    <button><a href="/logout">Logout</a></button>
+</div>
+</header>
+  

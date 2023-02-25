@@ -1,12 +1,13 @@
 <!doctype html>
 <html>
+    {% include 'header.html' %}
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index_style.css') }}">
     <title>Plant Watering Schedule</title>
 </head>
 <body>
     {% if plants %}
-        <h1 class="header">Upcoming Watering</h2>
+        <h1 class="header">Upcoming Watering</h1>
         <table class="plant-list">
             <tr>
                 <th>Name</th>
@@ -31,7 +32,7 @@
         <div class="button-container">
             <form action="{{ url_for('add_plant_page') }}" method="get">
                 <input class="add-plant-btn" type="submit" value="Add Plant">
-            </form>
+            </form> 
         </div>
         
         <div class="button-container">
@@ -48,8 +49,5 @@
             <a href="{{ url_for('add_first_plant_page') }}" class="add-first-plant-btn">Add your first plant</a>
         </div>
     {% endif %}
-    
-
-
 </body>
 </html>

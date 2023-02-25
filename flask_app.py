@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from flask_mail import Mail, Message
+from flask_apscheduler import APScheduler
 from datetime import datetime, timedelta
 from config import DevelopmentConfig
 
@@ -14,6 +16,15 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'alaurin10@gmail.com'
+app.config['MAIL_PASSWORD'] = 'cvuqiscxthbdrccs'
+
+mail = Mail(app)
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -171,14 +182,41 @@ def new_login():
 
     return render_template('new_login.html')
 
-
-
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect('/login')
 
+
+def my_task():
+    with app.app_context():
+        users = User.query.all()
+        for user in users:
+
+            need_water = []
+            plants = Plant.query.filter_by(user_id=user.id).all()
+            today = datetime.today().date()
+            for plant in plants:
+                plant.next_watering = plant.last_watered + timedelta(days=plant.days_between_watering)
+                
+                if today >= plant.next_watering:
+                    need_water.append(plant.name)
+
+            if need_water:
+                plants_need_water = ', '.join(need_water)
+                message = Message('Notification', sender='alaurin10@gmail.com', recipients=[f'{user.email}'])
+                message.body = f'The following plants need water!\n\n{plants_need_water}'
+                mail.send(message)
+            
+
+scheduler = APScheduler()
+# Configure the scheduler to run the task once a day at a specific time
+scheduler.add_job(func=my_task, trigger='cron', hour=9, minute=0, id='email notification')
+
+# Start the scheduler
+scheduler.init_app(app)
+scheduler.start()
 
 
 if __name__ == '__main__':
